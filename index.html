@@ -3,16 +3,21 @@ layout: default
 section: blog
 ---
 
-<div class='listing col6 pad4h margin3'>
-  {% for item in site.categories.blog limit:1000 %}
-    {% capture date %}{{ item.date | date: '%B %Y' }}{% endcapture %}
-    {% capture ndate %}{{ item.next.date | date: '%B %Y' }}{% endcapture %}
-
-    {% if date != ndate %}
-      <h4 class='month'>{{item.date | date: '%B %Y'}}</h4>
-    {% endif %}
-    <a class='item' href='{{site.baseurl}}{{item.url}}'>{{item.title}} <span class='date'>&#126; {{item.date | date:"%b %d"}}</span></a>
-  {% endfor %}
+{% assign index = true %}
+<div itemscope itemtype="http://schema.org/Blog">
+{% for post in paginator.posts %}
+{% assign content = post.content %}
+<article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">{% include article.html %}</article>
+{% endfor %}
 </div>
+<nav id="pagenavi">
+{% if paginator.previous_page %}
+<a href="{{paginator.previous_page}}" class="prev">Prev</a>
+{% endif %}
+{% if paginator.next_page %}
+<a href="{{paginator.next_page}}" class="next">Next</a>
+{% endif %}
+<div class="center"><a href="{{ root_url }}/blog/archives">Blog Archives</a></div>
+</nav>
 
 {% include rss-link.html %}

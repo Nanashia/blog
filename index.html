@@ -1,29 +1,15 @@
 ---
 layout: default
+section: blog
 ---
-
-<div class="blog-index">
-  {% assign index = true %}
-  {% for post in paginator.posts %}
-  {% assign content = post.content %}
-  <article>
-  {% include article.html %}
-  </article>
-  {% endfor %}
-  <div class="pagination">
-  {% if paginator.next_page %}
-  <a class="prev" href="{{paginator.next_page}}">&larr; Older</a>
-  {% endif %}
-  <a href="/blog/archives">Blog Archives</a>
-  {% if paginator.previous_page %}
-  <a class="next" href="{{paginator.previous_page}}">Newer &rarr;</a>
-  {% endif %}
-  </div>
+<div class='listing col6 pad4h margin3'>
+{% for item in site.categories.blog limit:1000 %}
+{% capture date %}{{ item.date | date: '%B %Y' }}{% endcapture %}
+{% capture ndate %}{{ item.next.date | date: '%B %Y' }}{% endcapture %}
+{% if date != ndate %}
+<h4 class='month'>{{item.date | date: '%B %Y'}}</h4>
+{% endif %}
+<a class='item' href='{{site.baseurl}}{{item.url}}'>{{item.title}} <span class='date'>&#126; {{item.date | date:"%b %d"}}</span></a>
+{% endfor %}
 </div>
-<aside class="sidebar">
-  {% if site.blog_index_asides.size %}
-  {% include_array blog_index_asides %}
-  {% else %}
-  {% include_array default_asides %}
-  {% endif %}
-</aside>
+{% include rss-link.html %}

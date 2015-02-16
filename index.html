@@ -7,9 +7,9 @@ section: blog
 {% capture date %}{{ item.date | date: '%B %Y' }}{% endcapture %}
 {% capture ndate %}{{ item.next.date | date: '%B %Y' }}{% endcapture %}
 {% if date != ndate %}
-<h4 class='month'>{{item.date | date: '%B %Y'}}</h4>
+<h3 class='month'>{{item.date | date: '%B %Y'}}</h3>
 {% endif %}
-<a class='item' href='{{site.baseurl}}{{item.url}}'>{{item.title}} <span class='date'>&#126; {{item.date | date:"%b %d"}}</span></a>
+<h4><a class='item' href='{{site.baseurl}}{{item.url}}'>{{item.title}} <span class='date'>:: {{item.date | date:"%b %d"}}</span></a></h4>
 {% endfor %}
 </div>
 {% include rss-link.html %}

@@ -2,7 +2,7 @@
 layout: blog
 category: blog
 published: true
-title: Untitled
+title: ブログっぽいの作ったけど作っただけで疲れた
 ---
 
-ブログっぽいの作ったけど作っただけで疲れた
+Jekyll+prose.ioでやってみたけどもうやりたくない
